@@ -9,19 +9,20 @@
 /* Begin PBXBuildFile section */
 		2B793AF02BC19B8700D2768D /* BluetoothAlertApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B793AEF2BC19B8700D2768D /* BluetoothAlertApp.swift */; };
 		2B793AF22BC19B8700D2768D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B793AF12BC19B8700D2768D /* ContentView.swift */; };
-		2B793AF42BC19B8700D2768D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B793AF32BC19B8700D2768D /* Item.swift */; };
 		2B793AF62BC19B8800D2768D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B793AF52BC19B8800D2768D /* Assets.xcassets */; };
 		2B793AFA2BC19B8800D2768D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B793AF92BC19B8800D2768D /* Preview Assets.xcassets */; };
+		2B793B012BC19D3D00D2768D /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B793B002BC19D3D00D2768D /* Bluetooth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2B793AEC2BC19B8700D2768D /* BluetoothAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B793AEF2BC19B8700D2768D /* BluetoothAlertApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothAlertApp.swift; sourceTree = "<group>"; };
 		2B793AF12BC19B8700D2768D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2B793AF32BC19B8700D2768D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2B793AF52BC19B8800D2768D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B793AF72BC19B8800D2768D /* BluetoothAlert.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BluetoothAlert.entitlements; sourceTree = "<group>"; };
 		2B793AF92BC19B8800D2768D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2B793B002BC19D3D00D2768D /* Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
+		2B793B022BC1A04A00D2768D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +55,10 @@
 		2B793AEE2BC19B8700D2768D /* BluetoothAlert */ = {
 			isa = PBXGroup;
 			children = (
+				2B793B022BC1A04A00D2768D /* Info.plist */,
 				2B793AEF2BC19B8700D2768D /* BluetoothAlertApp.swift */,
 				2B793AF12BC19B8700D2768D /* ContentView.swift */,
-				2B793AF32BC19B8700D2768D /* Item.swift */,
+				2B793B002BC19D3D00D2768D /* Bluetooth.swift */,
 				2B793AF52BC19B8800D2768D /* Assets.xcassets */,
 				2B793AF72BC19B8800D2768D /* BluetoothAlert.entitlements */,
 				2B793AF82BC19B8800D2768D /* Preview Content */,
@@ -142,8 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B793B012BC19D3D00D2768D /* Bluetooth.swift in Sources */,
 				2B793AF22BC19B8700D2768D /* ContentView.swift in Sources */,
-				2B793AF42BC19B8700D2768D /* Item.swift in Sources */,
 				2B793AF02BC19B8700D2768D /* BluetoothAlertApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,9 +277,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BluetoothAlert/Preview Content\"";
 				DEVELOPMENT_TEAM = 8HM2XMG9QM;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BluetoothAlert/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -313,9 +317,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BluetoothAlert/Preview Content\"";
 				DEVELOPMENT_TEAM = 8HM2XMG9QM;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BluetoothAlert/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
