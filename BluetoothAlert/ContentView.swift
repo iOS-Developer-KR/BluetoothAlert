@@ -22,6 +22,7 @@ struct ContentView: View {
         } catch(let error) {
             print("Scheduling Error \(error.localizedDescription)")
         }
+        
     }
     
     
@@ -57,14 +58,7 @@ struct ContentView: View {
                 Text(ph.name ?? "Unknown Device")
             }
         }
-//        .onAppear {
-//            BGTaskScheduler.shared.register(forTaskWithIdentifier: "BluetoothAlert.BluetoothAlert", using: .main) { (task) in
-//                print("My backgroundTask is execute NOW")
-//                task.expirationHandler = {
-//                    task.setTaskCompleted(success: true)
-//                }
-//            }
-//        }
+
     }
     
 }
