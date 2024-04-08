@@ -12,32 +12,30 @@ import Combine
 @Observable 
 class TimeManager {
     
+    // used for communicate with HM10
     var bluetooth: Bluetooth = Bluetooth()
         
-    // Set the initial time to 60 seconds
-    var timeRemaining = 60
+    // Set the initial time to 0 seconds
+    var timeRemaining = 0
 
     // A boolean used to show an alert when the time runs out
     var showAlert = false
 
     // A boolean used to pause the timer
     var isStarted = false
-    
-    var isPaused = false
-    
+        
     var initalized = false
 
     // Publisher from Combine used for the timer
     var timer: AnyCancellable?
-
-
     
-    var currentState = "시작"
-    
+    // set hour
     var hour: Int = 0
     
+    // set minute
     var minute: Int = 0
     
+    // set second
     var second: Int = 0
     
     
@@ -49,7 +47,6 @@ class TimeManager {
         }
     }
     
-    // 1.
     func startTimer() {
         isStarted = true
         initalized = true
@@ -57,7 +54,6 @@ class TimeManager {
             if self.timeRemaining > 0 {
                 self.timeRemaining -= 1
             } else {
-                print("끝남?")
                 self.showAlert = true
                 self.isStarted = false
                 self.initalized = false
@@ -67,15 +63,12 @@ class TimeManager {
         }
     }
 
-    // 2.
     func cancelTimer() {
         timer?.cancel()
         isStarted = false
         initalized = false
-//        timeRemaining = selectedDuration
     }
 
-    // 3.
     func pauseOrResumeTimer() {
         isStarted.toggle()
         if isStarted && timeRemaining > 0 {
@@ -84,17 +77,11 @@ class TimeManager {
             timer?.cancel()
         }
     }
-
-    // 4.
-    func resetTimer() {
-//        timeRemaining = selectedDuration
-        isStarted = false
-    }
 }
 
 
-let dateformat: DateFormatter = {
-      let formatter = DateFormatter()
-       formatter.dateFormat = "HH:mm:ss"
-       return formatter
-}()
+//let dateformat: DateFormatter = {
+//      let formatter = DateFormatter()
+//       formatter.dateFormat = "HH:mm:ss"
+//       return formatter
+//}()

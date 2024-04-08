@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2B793AF02BC19B8700D2768D /* BluetoothAlertApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B793AEF2BC19B8700D2768D /* BluetoothAlertApp.swift */; };
-		2B793AF22BC19B8700D2768D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B793AF12BC19B8700D2768D /* ContentView.swift */; };
 		2B793AF62BC19B8800D2768D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B793AF52BC19B8800D2768D /* Assets.xcassets */; };
 		2B793AFA2BC19B8800D2768D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B793AF92BC19B8800D2768D /* Preview Assets.xcassets */; };
 		2B793B012BC19D3D00D2768D /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B793B002BC19D3D00D2768D /* Bluetooth.swift */; };
@@ -22,7 +21,6 @@
 /* Begin PBXFileReference section */
 		2B793AEC2BC19B8700D2768D /* BluetoothAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B793AEF2BC19B8700D2768D /* BluetoothAlertApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothAlertApp.swift; sourceTree = "<group>"; };
-		2B793AF12BC19B8700D2768D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2B793AF52BC19B8800D2768D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B793AF72BC19B8800D2768D /* BluetoothAlert.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BluetoothAlert.entitlements; sourceTree = "<group>"; };
 		2B793AF92BC19B8800D2768D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 			children = (
 				2B793B022BC1A04A00D2768D /* Info.plist */,
 				2B793AEF2BC19B8700D2768D /* BluetoothAlertApp.swift */,
-				2B793AF12BC19B8700D2768D /* ContentView.swift */,
 				2B84E97A2BC3B78E009623F8 /* AlertView.swift */,
 				2B84E9992BC4158B009623F8 /* ElapsedTimeView.swift */,
 				2B84E9972BC4041C009623F8 /* HourMinutePickerView.swift */,
@@ -161,7 +158,6 @@
 			files = (
 				2B793B012BC19D3D00D2768D /* Bluetooth.swift in Sources */,
 				2B84E97B2BC3B78E009623F8 /* AlertView.swift in Sources */,
-				2B793AF22BC19B8700D2768D /* ContentView.swift in Sources */,
 				2B793AF02BC19B8700D2768D /* BluetoothAlertApp.swift in Sources */,
 				2B84E99C2BC418C2009623F8 /* StartStopButtonView.swift in Sources */,
 				2B84E99A2BC4158B009623F8 /* ElapsedTimeView.swift in Sources */,

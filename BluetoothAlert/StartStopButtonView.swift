@@ -9,13 +9,6 @@ import SwiftUI
 
 struct StartStopButtonView: View {
     @Environment(TimeManager.self) var timeManager
-//    @Binding var timer: Timer
-
-//    func terminate() {
-//        pressed.toggle()
-//    }
-    
-
     
     var body: some View {
         HStack {
