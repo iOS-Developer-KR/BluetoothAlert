@@ -13,19 +13,17 @@ struct ContentView: View {
     @Environment(Bluetooth.self) var bluetooth
     
     func scheduleAppRefresh() {
-        let today = Calendar.current.startOfDay(for: .now)
-        let today2 = Calendar.current.date(byAdding: .day, value: 0, to: today)!
-        let soonComponent = DateComponents(minute: 5)
-        let soon = Calendar.current.date(byAdding: soonComponent, to: today2)
-        
+
         let request = BGAppRefreshTaskRequest(identifier: "BluetoothAlert.BluetoothAlert")
-        request.earliestBeginDate = soon
+        request.earliestBeginDate = Calendar.current.date(byAdding: .second, value: 5, to: Date())
         do {
             try BGTaskScheduler.shared.submit(request)
-        } catch {
-            print("error: \(error)")
+            print("Background Task Scheduled!")
+        } catch(let error) {
+            print("Scheduling Error \(error.localizedDescription)")
         }
     }
+    
     
     var body: some View {
         Text("블루투스 알람 앱을 만들어보자")
@@ -59,6 +57,14 @@ struct ContentView: View {
                 Text(ph.name ?? "Unknown Device")
             }
         }
+//        .onAppear {
+//            BGTaskScheduler.shared.register(forTaskWithIdentifier: "BluetoothAlert.BluetoothAlert", using: .main) { (task) in
+//                print("My backgroundTask is execute NOW")
+//                task.expirationHandler = {
+//                    task.setTaskCompleted(success: true)
+//                }
+//            }
+//        }
     }
     
 }

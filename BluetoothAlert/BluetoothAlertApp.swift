@@ -19,12 +19,17 @@ struct BluetoothAlertApp: App {
                 .environment(bluetooth)
         }
         .backgroundTask(.appRefresh("BluetoothAlert.BluetoothAlert")) {
-            notification()
+            await notification()
         }
     }
     
-    func notification() {
+    func notification() async {
         bluetooth.sendMessageToDevice("o")
+        let content = UNMutableNotificationContent()
+        content.title = "블루투스 실행 완료"
+        content.subtitle = "드가자"
+        
+        try? await UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "test", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)))
     }
 }
 
