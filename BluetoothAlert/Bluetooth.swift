@@ -122,7 +122,9 @@ enum BluetoothError: Error {
     
     func sendMessageToDevice(_ message: String){ // -> Bool{
         // 만약 블루투스가 연결되지 않았다면 보내면 안된다.
+        
         if connectedPeripheral?.state == .connected {
+            print("전송했는데")
             if let data = message.data(using: String.Encoding.utf8), let charater = writeCharacteristic {
                 connectedPeripheral!.writeValue(data, for: charater, type: writeType) // writeCharacteristic은 주변기기에 보내기 위한 특성
             }

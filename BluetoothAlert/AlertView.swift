@@ -27,27 +27,34 @@ struct AlertView: View {
     @State var pressed = false
     
     var body: some View {
-        
+        @Bindable var timer = timeManager
         ZStack {
             RadialGradient(gradient: Gradient(colors: [Color.purple, Color.accentColor]), center: .center, startRadius: 5, endRadius: 500)
                 .ignoresSafeArea()
             VStack {
                 HourMinutePickerView()
                 
-                Button(action: {
-                    timeManager.initalize()
-                }, label: {
-                    Text("시작")
-                })
-                .buttonStyle(CustomButtonStyle(buttonColor: .green))
+                if !timeManager.initalized {
+                    Button(action: {
+                        timeManager.initalize()
+                    }, label: {
+                        Text("시작")
+                    })
+                    .buttonStyle(CustomButtonStyle(buttonColor: .green))
+                }
                 
                 if timeManager.initalized && timeManager.timeRemaining > 0 {
                     ElapsedTimeView()
                 }
                 
             }
-
         }
+        .alert("알람", isPresented: $timer.showAlert) {
+            Button("알람끄기") {
+                timer.bluetooth.sendMessageToDevice("f")
+            }
+        }
+        
 
     }
     

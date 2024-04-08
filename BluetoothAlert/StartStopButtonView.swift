@@ -36,7 +36,7 @@ struct StartStopButtonView: View {
                 Text(timeManager.isStarted ? "중지" : "재시작")
                     .foregroundStyle(.white)
             })
-            .buttonStyle(CustomButtonStyle(buttonColor: .green))
+            .buttonStyle(CustomButtonStyle(buttonColor: timeManager.isStarted ? .yellow : .green))
             .padding()
             
         }

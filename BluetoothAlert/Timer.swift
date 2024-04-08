@@ -12,6 +12,8 @@ import Combine
 @Observable 
 class TimeManager {
     
+    var bluetooth: Bluetooth = Bluetooth()
+        
     // Set the initial time to 60 seconds
     var timeRemaining = 60
 
@@ -28,11 +30,7 @@ class TimeManager {
     // Publisher from Combine used for the timer
     var timer: AnyCancellable?
 
-    // An integer bounded to our picker
-    var selectedDuration = 60
 
-    // An array of integers allowing the timer to be set from 20-100 seconds
-    let durationRange = Array(20...100)
     
     var currentState = "시작"
     
@@ -42,34 +40,29 @@ class TimeManager {
     
     var second: Int = 0
     
-    var textTimeRemaining = ""
     
     func initalize() {
-        timeRemaining = (hour*3600) + (minute*60) + second
-        initalized = true
-        isStarted = true
-        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect().sink { _ in
-            if self.timeRemaining > 0 {
-                self.timeRemaining -= 1
-            } else {
-                self.showAlert = true
-                self.isStarted = false
-                self.timer?.cancel()
-            }
+        if hour != 0 || minute != 0 || second != 0 {
+            bluetooth.sendMessageToDevice("f")
+            timeRemaining = (hour*3600) + (minute*60) + second
+            startTimer()
         }
     }
     
     // 1.
     func startTimer() {
-        initalized = true
         isStarted = true
+        initalized = true
         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect().sink { _ in
             if self.timeRemaining > 0 {
                 self.timeRemaining -= 1
             } else {
+                print("끝남?")
                 self.showAlert = true
                 self.isStarted = false
+                self.initalized = false
                 self.timer?.cancel()
+                self.bluetooth.sendMessageToDevice("o")
             }
         }
     }
@@ -78,7 +71,8 @@ class TimeManager {
     func cancelTimer() {
         timer?.cancel()
         isStarted = false
-        timeRemaining = selectedDuration
+        initalized = false
+//        timeRemaining = selectedDuration
     }
 
     // 3.
@@ -93,7 +87,7 @@ class TimeManager {
 
     // 4.
     func resetTimer() {
-        timeRemaining = selectedDuration
+//        timeRemaining = selectedDuration
         isStarted = false
     }
 }
