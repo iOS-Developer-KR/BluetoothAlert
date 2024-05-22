@@ -35,13 +35,10 @@ enum BluetoothError: Error {
     public override init() {
         super.init()
         print("초기화")
-        self.centralManager = CBCentralManager.init(delegate: self, queue: nil, options: nil) // 1. centralManager 객체를 초기화 시킨다.
+        self.centralManager = CBCentralManager.init(delegate: self, queue: nil, options: nil)
     }
-    // central manager를 만들때 central manager는 이 메서드를 부른다.
-    // centralManagerDidUpdateState 함수는 delegate한테 central manager'의 상태가 변했다고 알려주는데
-    // 아래와 같은 경우는 init()에서 centralManager가 CBCentralManager.init(...)을 실행시켜서 초기화 시킴으로 상태가 변했으므로 이 함수를 실행시킨다.
-    // 저전력 블루투스가 지원되고 central 기기에서 쓰일수 있도록 반드시 구현해야한다.
-    func centralManagerDidUpdateState(_ central: CBCentralManager) { // 1. 그리고 대리자를 세팅시켜라
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("만들어졌다")
         switch central.state {
         case .unknown:
@@ -56,14 +53,14 @@ enum BluetoothError: Error {
             print("powered off")
         case .poweredOn:
             print("powered on")
-//            self.centralManager.scanForPeripherals(withServices: nil, options: nil)
             self.centralManager.scanForPeripherals(withServices: [serviceUUID])
         @unknown default:
             fatalError()
         }
         connectedPeripheral = nil
     }
-    func startScan(){ // 2. 주변기기를 스캔
+    
+    func startScan(){
         guard centralManager.state == .poweredOn else {return}
         // [serviceUUID]만 갖고있는 기기만 검색
         print("주변기기 스캔시작")
@@ -82,7 +79,7 @@ enum BluetoothError: Error {
         
     // 기기가 연결되면 호출되는 delegate 메서드다.
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        peripheral.delegate = self // 5. 연결되면 주변기기 대리자 만들기
+        peripheral.delegate = self
         connectedPeripheral = peripheral
         
         // peripheral의 Service들을 검색한다. 파라미터를 nil으로 설정하면 Peripheral의 모든 service를 검색한다.
@@ -109,22 +106,19 @@ enum BluetoothError: Error {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         for characteristic in service.characteristics!{
             if characteristic.uuid == characteristicUUID {
-                peripheral.setNotifyValue(true, for: characteristic) // 10. 구독한다.
+                peripheral.setNotifyValue(true, for: characteristic)
                 
                 writeCharacteristic = characteristic // writeCharacteristic:  주변기기에 보내기 위한 특성을 저장하는 변수
                 
-                writeType = characteristic.properties.contains(.write) ? .withResponse : .withoutResponse // 9.
+                writeType = characteristic.properties.contains(.write) ? .withResponse : .withoutResponse
                 
                 connected = true
             }
         }
     }
     
-    func sendMessageToDevice(_ message: String){ // -> Bool{
-        // 만약 블루투스가 연결되지 않았다면 보내면 안된다.
-        
+    func sendMessageToDevice(_ message: String){
         if connectedPeripheral?.state == .connected {
-            print("전송했는데")
             if let data = message.data(using: String.Encoding.utf8), let charater = writeCharacteristic {
                 connectedPeripheral!.writeValue(data, for: charater, type: writeType) // writeCharacteristic은 주변기기에 보내기 위한 특성
             }

@@ -78,10 +78,3 @@ class TimeManager {
         }
     }
 }
-
-
-//let dateformat: DateFormatter = {
-//      let formatter = DateFormatter()
-//       formatter.dateFormat = "HH:mm:ss"
-//       return formatter
-//}()

@@ -54,11 +54,7 @@ struct AlertView: View {
                 timer.bluetooth.sendMessageToDevice("f")
             }
         }
-        
-
     }
-    
-
     
 }
 
