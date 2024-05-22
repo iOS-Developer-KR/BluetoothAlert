@@ -8,16 +8,7 @@
 
 SoftwareSerial HM10(BT_RXD, BT_TXD);  // RX핀(4번)은 HM10의 TX에 연결
                                       // TX핀(5번)은 HM10의 RX에 연결  
-StaticJsonDocument<256> buffer;
 
-void data_json(bool status, int bpm);
-  
-void setup(){
-  Serial.begin(9600);
-  pinMode(LED, OUTPUT);    // LED를 출력으로 설정
-  pinMode(BUTTON_PIN, INPUT_PULLUP); // 내장 풀업 저항을 사용하여 버튼 핀을 입력으로 설정
-  HM10.begin(9600);
-}
 
 void loop(){
   // Bluetooth 모듈에서 데이터를 읽어옴
@@ -31,22 +22,4 @@ void loop(){
       digitalWrite(LED, LOW);       // LED가 소등됨
     }
   }
-  
-  
-  // 시리얼 모니터를 통해 데이터를 읽어서 Bluetooth 모듈로 전송함
-  if(Serial.available()){
-    char h = (char)Serial.read();
-    HM10.println(h);
-  }
-}
-
-void data_json(bool status, int bpm){
-  buffer["power_status"] = status;
-  buffer["bpm"] = bpm;
-
-  char output[256];
-
-  serializeJson(buffer, output);
-  Serial.println(output);
-  HM10.println(output);
 }
