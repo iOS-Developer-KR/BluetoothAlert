@@ -113,3 +113,20 @@ func cancelTimer() {
         }
     }
 ```
+
+## 아두이노 코드
+```
+void loop(){
+  // Bluetooth 모듈에서 데이터를 읽어옴
+  if (HM10.available()){       
+    char h = (char)HM10.read();
+    Serial.println(h);
+    if(h == 'o'){                   // 알파벳 소문자 'o'를 입력하면
+      digitalWrite(LED, HIGH);     // LED가 점등됨
+    }
+    if(h == 'f'){                   // 알파벳 소문자 'f'를 입력하면
+      digitalWrite(LED, LOW);       // LED가 소등됨
+    }
+  }
+}
+```
