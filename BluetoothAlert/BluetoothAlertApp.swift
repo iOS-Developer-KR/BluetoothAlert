@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import BackgroundTasks
 
 @main
 struct BluetoothAlertApp: App {
